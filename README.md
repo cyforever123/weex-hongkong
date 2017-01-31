@@ -33,7 +33,7 @@
 3）点击【create】则项目则创建成功，如图所示：
 ![创建成功](http://img.blog.csdn.net/20170125230654403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-4）新建一个.we文件
+4）新建一个.we文件，如图所示：
 ![这里写图片描述](http://img.blog.csdn.net/20170125230721737?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 5）新建一个home.we文件后，项目目录如下所示：
@@ -50,7 +50,7 @@ weex_tmp---编译weex文件后，生成的文件夹，可以想象成原生的bu
 
 3.项目需求
 ------
-需要实现如下所示界面：
+需要实现如下所示界面，如图所示：下图是个首页面：
 ![这里写图片描述](http://img.blog.csdn.net/20170125224849619?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 其实很多电商公司的首页面都是这样的楼层布局，我们实现出这个界面也就可以算大概会使用weex了。
 
