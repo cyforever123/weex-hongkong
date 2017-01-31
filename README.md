@@ -27,10 +27,10 @@
 1）新建一个名为hongkong的项目，如图所示：
 ![这里写图片描述](http://img.blog.csdn.net/20170125230554903?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-2）输入项目名称
+2）输入项目名称，如图所示：
 ![项目名称](http://img.blog.csdn.net/20170125230625392?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-3）点击【create】则项目则创建成功
+3）点击【create】则项目则创建成功，如图所示：
 ![创建成功](http://img.blog.csdn.net/20170125230654403?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 4）新建一个.we文件
