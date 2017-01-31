@@ -50,9 +50,8 @@ weex_tmp---编译weex文件后，生成的文件夹，可以想象成原生的bu
 
 3.项目需求
 ------
-需要实现如下所示界面，如图所示：下图是个首页面：
+项目中需要实现如下所示界面，如图所示：下图是个首页面，其实很多电商公司的首页面都是这样的楼层布局，我们实现出这个界面也就可以算大概会使用weex了。：
 ![这里写图片描述](http://img.blog.csdn.net/20170125224849619?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
-其实很多电商公司的首页面都是这样的楼层布局，我们实现出这个界面也就可以算大概会使用weex了。
 
 刚刚拿到这个界面用weex实现的时候，很多人觉得无从下手，不是难，而是不熟悉，没有参考demo，我这篇文章就算抛砖引玉，带大家入门。
 
@@ -562,7 +561,6 @@ module.exports = {
 **1.公共url的抽取**
 最后图片，js都部署在远程服务器，原生开发的时候，相信大家都会新建一个UrlUtil类来管理url，当然该类里面肯定有个baseUrl为服务器地址，理所应当，weex项目也可以这样，方便维护。
 
-如图所示：
 ![这里写图片描述](http://img.blog.csdn.net/20170125234846250?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 在.we文件中使用到图片地址时，则可以用如下方式：
 
