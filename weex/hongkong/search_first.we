@@ -1,0 +1,158 @@
+<template>
+<div>
+    <div style="padding-left: 30;padding-right: 20;">
+        <div class="header">
+            <div style=" height: 36;" onclick="popout">
+                 <img style="width: 17;height: 30;" src={{go_back}}></img>
+            </div>
+            <input class = "title-background"
+                    type="text"
+                    autofocus="true"
+                    oninput="oninput">
+            </input>
+
+            <div style=" height: 36;">
+                         <text class="title-query" onclick="setnull">取消</text>
+            </div>
+        </div>
+        <div class = "title-img" if="{{!isinput}}">
+                         <img style="width: 30;height: 30;" src={{query}}></img>
+                         <text class="title-query">搜索商品</text>
+                    </div>
+    </div>
+    <div style="background-color: #f5f5f5;padding-left: 30;padding-right: 30;margin-top: 12;flex: 1;
+                    border-top-style{solid};border-top-width{1};border-top-color{#999999}">
+                <div >
+                    <text class="title-other">歷史搜索</text>
+                </div>
+                 <div repeat="(i, v) in list" class="row">
+                              <div repeat="(k, text) in v" rownumber={{k}} class="item" onclick="search_to">
+                                <div>
+                                  <text style="font-family:PingFangSC-Light;
+                                        font-size:28px;
+                                        color:#4a4a4a;
+                                        letter-spacing:-0.68px;
+                                        text-align:center;">{{text}}</text>
+                                </div>
+                              </div>
+                  </div>
+     </div>
+</div>
+</template>
+<style>
+    .header {
+             height: 60;
+             flex-direction: row;
+             align-items: center;
+             margin-top: 12;
+            justify-content: space-between;
+    }
+    .title-background{
+      width:584px;
+      height:60px;
+      border-radius:4px;
+      background-color:#ececec;
+      margin-right: 10;
+      margin-left: 10;
+    }
+    .title-img{
+          align-items: center;
+          justify-content: center;
+          background-color:#ececec;
+          border-radius:4px;
+          width:200px;
+          height:58px;
+          flex-direction: row;
+          position: absolute;
+              top: 13;
+              left: 275;
+        }
+    .title-query{
+      font-family:PingFangSC-Light;
+      font-size:28px;
+      color:#333333;
+      text-align:left;
+    }
+    .title-other{
+          font-family:PingFangSC-Light;
+          font-size:24px;
+          color:#999999;
+          text-align:left;
+          margin-bottom: 10;
+          margin-top: 30;
+        }
+       .item{
+       letter-spacing:-0.68px;
+       text-align:center;
+         flex:1;
+         justify-content: center;
+         align-items:center;
+         background-color: white;
+         margin: 10;
+       }
+       .row{
+         flex-direction: row;
+         height:80;
+       }
+</style>
+<script>
+    var baseUrl=require('./url.js');
+    var navigator = require('@weex-module/navigator')
+    var params = {
+            animated: 'true'
+    }
+    var params1 = {
+      url: baseUrl.apiurl.resurl +'search_classify.js',
+      animated: 'true'
+    }
+     var params2 = {
+          url: baseUrl.apiurl.resurl +'baby_list.js',
+          animated: 'true'
+        }
+      var params3 = {
+           url: baseUrl.apiurl.resurl +'bigbaby_list.js',
+           animated: 'true'
+         }
+    module.exports={
+        data:{
+            isinput:false,
+            query:baseUrl.apiurl.resurl + "query.png",
+            scan:baseUrl.apiurl.resurl + "scan.png",
+            go_back:baseUrl.apiurl.resurl + "pic_back.png",
+            list:[
+                ['手提電腦', '華碩手提電腦', '戴爾'],
+                ['相機', '佳能', '索尼'],
+                ['電水壺', '電視機', '手機']
+             ]
+        },
+         methods: {
+                      oninput: function(event) {
+                            this.isinput=true;
+                      },
+                      setnull:function(e) {
+                           event.value='';
+                      },
+                      popout:function(event) {
+                            navigator.pop(params, function () {
+                                // callback
+                            })
+                      },
+                      search_to:function(e) {
+                          if (e.target.attr.rownumber%3 == 0) {
+                                     navigator.push(params1, function () {
+                                        // callback
+                                     })
+                           }else if (e.target.attr.rownumber%3 == 1) {
+                                navigator.push(params2, function () {
+                                   // callback
+                                   })
+                           }else if (e.target.attr.rownumber%3 == 2) {
+                               navigator.push(params3, function () {
+                                   // callback
+                                   })
+                           }
+
+                      }
+         }
+    }
+</script>

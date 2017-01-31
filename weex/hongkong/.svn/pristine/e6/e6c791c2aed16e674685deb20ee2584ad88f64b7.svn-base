@@ -1,0 +1,64 @@
+<template>
+    <div>
+        <wxc-tabbar tab-items="{{tabItems}}" ; selected-color="#ff8000" ; unselected-color="#999999"></wxc-tabbar>
+    </div>
+</template>
+<script>
+    require('weex-components');
+    var baseUrl = require('./url.js');
+    module.exports = {
+        data: {
+            dir: 'examples',
+            tabItems: [
+                {
+                    index: 0,
+                    title: '首页',
+                    titleColor: '#000000',
+                    icon: '',
+                    image: baseUrl.apiurl.resurl + 'home_normal.png',
+                    selectedImage: baseUrl.apiurl.resurl + 'home_selected.png',
+                    src: baseUrl.apiurl.resurl + 'home.js',
+                    visibility: 'visible',
+                },
+                {
+                    index: 1,
+                    title: '分類',
+                    titleColor: '#000000',
+                    icon: '',
+                    image: baseUrl.apiurl.resurl + 'category_normal.png',
+                    selectedImage: baseUrl.apiurl.resurl + 'category_selected.png',
+                    src: baseUrl.apiurl.resurl + 'shopcart.js',
+                    visibility: 'hidden',
+                },
+                {
+                    index: 2,
+                    title: '購物車',
+                    titleColor: '#000000',
+                    icon: '',
+                    image: baseUrl.apiurl.resurl + 'shopcar_normal.png',
+                    selectedImage: baseUrl.apiurl.resurl + 'shopcar_selected.png',
+                    src: baseUrl.apiurl.resurl + 'shopcart.js',
+                    visibility: 'hidden',
+                },
+                {
+                    index: 3,
+                    title: '我的',
+                    titleColor: '#000000',
+                    icon: '',
+                    image: baseUrl.apiurl.resurl + 'account_normal.png',
+                    selectedImage: baseUrl.apiurl.resurl + 'account_selected.png',
+                    src: baseUrl.apiurl.resurl + 'login.js',
+                    visibility: 'hidden',
+                }
+            ],
+        },
+        created: function () {
+            var vm = this;
+            vm.$on('tabBar.onClick', function (e) {
+                var detail = e.detail;
+                console.log('tabBar.onClick ' + detail.index);
+            });
+        },
+        methods: {}
+    }
+</script>

@@ -1,0 +1,76 @@
+{
+  "_args": [
+    [
+      "weex-html5@^0.3.2",
+      "C:\\Users\\16080695\\AppData\\Roaming\\npm\\node_modules\\weex-toolkit"
+    ]
+  ],
+  "_from": "weex-html5@>=0.3.2 <0.4.0",
+  "_id": "weex-html5@0.3.2",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/weex-toolkit/weex-html5",
+  "_nodeVersion": "4.4.5",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/weex-html5-0.3.2.tgz_1471575108054_0.08377600717358291"
+  },
+  "_npmUser": {
+    "email": "tekkahs@gmail.com",
+    "name": "mr.raindrop"
+  },
+  "_npmVersion": "2.15.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "weex-html5",
+    "raw": "weex-html5@^0.3.2",
+    "rawSpec": "^0.3.2",
+    "scope": null,
+    "spec": ">=0.3.2 <0.4.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/weex-toolkit"
+  ],
+  "_resolved": "https://registry.npmjs.org/weex-html5/-/weex-html5-0.3.2.tgz",
+  "_shasum": "45bdf9937353c9d2ac22f183ce9a1d1749e238a3",
+  "_shrinkwrap": null,
+  "_spec": "weex-html5@^0.3.2",
+  "_where": "C:\\Users\\16080695\\AppData\\Roaming\\npm\\node_modules\\weex-toolkit",
+  "author": {
+    "name": "mr.raindrop"
+  },
+  "bugs": {
+    "url": "https://github.com/alibaba/weex/issues"
+  },
+  "dependencies": {},
+  "description": "Weex HTML5 Renderer",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "45bdf9937353c9d2ac22f183ce9a1d1749e238a3",
+    "tarball": "https://registry.npmjs.org/weex-html5/-/weex-html5-0.3.2.tgz"
+  },
+  "homepage": "https://alibaba.github.io/weex",
+  "keywords": [
+    "weex",
+    "html5"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/weex.common.js",
+  "maintainers": [
+    {
+      "email": "tekkahs@gmail.com",
+      "name": "mr.raindrop"
+    }
+  ],
+  "name": "weex-html5",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alibaba/weex.git"
+  },
+  "scripts": {},
+  "version": "0.3.2"
+}

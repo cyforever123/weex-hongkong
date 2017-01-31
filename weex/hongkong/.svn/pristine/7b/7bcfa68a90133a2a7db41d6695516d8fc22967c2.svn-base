@@ -1,0 +1,215 @@
+<template>
+    <div>
+        <div style="padding-left: 30;padding-right: 20;height: 80">
+                <div class="header">
+                    <div style=" height: 36;" onclick="popout">
+                         <img style="width: 17;height: 30;" src={{go_back}}></img>
+                    </div>
+                    <input class = "title-background"
+                            type="text"
+                            autofocus="true"
+                            oninput="oninput">
+                    </input>
+
+                    <div style=" height: 36;">
+                                   <img style="width: 36;height: 36;" src={{select}}></img>
+                    </div>
+                </div>
+                <div class = "title-img" if="{{!isinput}}">
+                                 <img style="width: 30;height: 30;" src={{query}}></img>
+                                 <text class="title-query">搜索商品</text>
+                </div>
+        </div>
+        <div style="height: 1px;background-color: #999999;margin-top: 18px"></div>
+
+        <div class="tab">
+            <div style="flex: 1;justify-content: center;align-items: center">
+                <text class="title-query" style="color: #ff8000">
+                    綜合
+                </text>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        名稱
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up"style="color:#ff8000;">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        價格
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        型號
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+
+        </div>
+        <div style="height: 1px;background-color: #999999"></div>
+        <div class="nothing" if="{{!anything}}" style="background-color: #f5f5f5;justify-content: center;align-items: center;flex: 1" >
+             <img style="width: 140;height: 177;margin-bottom: 31" src={{sorry}}></img>
+             <text class="title-query">抱歉，沒有找到“手提電腦”相關商品
+             </text>
+             <text class="title-query">
+             您可以輸入其他關鍵詞試試看</text>
+        </div>
+        <list class="list" if="{{anything}}">
+            <cell class="row" repeat="item in rows" index="{{$index}}" onclick="todetail">
+                <image style="width: 180;height: 180;margin-top: 5;"src="{{picpath}}">
+                </image>
+                <div style="margin-left: 20;margin-right30;justify-content: space-between;">
+                    <text style="font-family:PingFangSC-Light;
+                                 font-size:28px;
+                                 color:#000000;
+                                 letter-spacing:0;
+                                 text-align:left;
+                                 margin-top: 10"
+                                 >
+                    {{item.name}}</text>
+                    <text style="font-family:PingFangSC-Semibold;
+                                 font-size:32px;
+                                 color:#ff8000;
+                                 letter-spacing:-0.78px;
+                                 text-align:left;
+                                 margin-bottom: 20;
+                                 ">
+                    {{item.prise}}</text>
+                </div>
+            </cell>
+          </list>
+    </div>
+</template>
+
+<style>
+     .header {
+                  height: 60;
+                  flex-direction: row;
+                  align-items: center;
+                  margin-top: 12;
+                 justify-content: space-between;
+
+         }
+         .title-background{
+           width:584px;
+           height:60px;
+           border-radius:4px;
+           background-color:#ececec;
+           margin-right: 10;
+           margin-left: 10;
+         }
+         .title-img{
+               align-items: center;
+               justify-content: center;
+               background-color:#ececec;
+               border-radius:4px;
+               width:200px;
+               height:58px;
+               flex-direction: row;
+               position: absolute;
+                   top: 13;
+                   left: 275;
+             }
+         .title-query{
+           font-family:PingFangSC-Light;
+           font-size:28px;
+           color:#333333;
+           text-align:left;
+         }
+        .tab{
+            background:#ffffff;
+            width:750px;
+            height:80px;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+        .row{
+            width:750px;
+            height:188px;
+            flex-direction: row;
+        }
+        .up{
+            color:#cccccc;
+            font-size:10px;
+        }
+</style>
+<script>
+     var baseUrl=require('./url.js');
+     var navigator = require('@weex-module/navigator');
+     var params = {
+        animated: 'true'
+        };
+        var params1 = {
+              url: baseUrl.apiurl.resurl +'prodetail.js',
+              animated: 'true'
+            };
+
+        module.exports={
+            data:{
+                query:baseUrl.apiurl.resurl + "query.png",
+                scan:baseUrl.apiurl.resurl + "scan.png",
+
+                go_back:baseUrl.apiurl.resurl + "pic_back.png",
+                select:baseUrl.apiurl.resurl + "filter.png",
+                sorry:baseUrl.apiurl.resurl + "loading_fail_default.png",
+                picpath:baseUrl.apiurl.resurl + "default_pic.png",
+
+                anything:true,
+                isinput:false,
+                    rows:[
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'}
+
+                    ]
+            },
+             methods: {
+             oninput: function(event) {
+                  this.isinput=true;
+                                   },
+                popout:function(e) {
+                    navigator.pop(params, function () {
+                                    // callback
+                     })
+                },
+                todetail:function(e) {
+                 navigator.push(params1, function () {
+                     // callback
+                     })
+                }
+             }
+        }
+</script>

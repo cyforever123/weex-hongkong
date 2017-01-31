@@ -1,0 +1,120 @@
+<template >
+    <wrapper style="background-color:#f5f5f5; height:1334">
+        <div class="top-content" style="background-color:#fff;">
+           <img src="{{topImg}}" class="topImg" style="width:750;height:201;">
+            <div class="user-info" style="position:absolute; top:60;left:309;width:132;height:180;z-index:999;">
+                <text class="username" class="_font" style="font-size:28;color:#fff;">dosimple</text>
+                <img class="avatar" src="{{avatar}}" style="border-radius:100%;top:34px">
+            </div>
+            <div class="orderContent" style="height:304;">
+                <div class="order-top-img"></div>
+                <div class="order-list-boxt" style="flex-direction:row;margin-top:149;">
+
+                    <cell class="order-list-item" style="margin-left:70;">
+                        <img class="img-circle" src="{{orderList1}}"></img>
+                        <text class="_font" style="font-size:24;color:#4a4a4a">待支付</text>
+                    </cell>
+                    <cell class="order-list-item" style="margin-left:95;">
+                        <img class="img-circle" src="{{orderList2}}"></img>
+                        <text class="_font" style="font-size:24;color:#4a4a4a">歷史訂單</text>
+                    </cell>
+                    <cell class="order-list-item" style="margin-left:57;">
+                        <img class="img-circle" src="{{orderList3}}"></img>
+                        <text class="_font" style="font-size:24;color:#4a4a4a">歷史看位訂單</text>
+                    </cell>
+                    <cell class="order-list-item" style="margin-left:51;">
+                        <img class="img-circle" src="{{orderList4}}"></img>
+                        <text class="_font" style="font-size:24;color:#4a4a4a">商品退換</text>
+                    </cell>
+                </div>
+            </div>
+        </div>
+
+        <div class="menu-content" style="margin-top:20;">
+            <cell class="menu-item">
+                 <text>商品收藏</text>
+                 <img class="img-rightArrow" src="{{rightArrow}}"></img>
+            </cell>
+            <cell class="menu-item" style="margin-top:1">
+                 <text>收货地址管理</text>
+                 <img class="img-rightArrow" src="{{rightArrow}}"></img>
+            </cell>
+            <cell class="menu-item" style="margin-top:20">
+                <text>設置</text>
+                <img class="img-rightArrow" src="{{rightArrow}}"></img>
+            </cell>
+        </div>
+
+        <navbar></navbar>
+    </wrapper>
+</template>
+<script>
+    var resurl = require('./url.js').apiurl.resurl;
+    var navigator = require('@weex-module/navigator');
+    require('./include/navbar.we');
+
+    module.exports = {
+        data(){
+            return {
+                    topImg:resurl+'/headerBackImage.png',
+                    avatar:resurl+'/headerImage.png',
+                    orderTitle:resurl+'/order-title.png',
+                    orderList1:resurl+'/icon_state_return.png',
+                    orderList2:resurl+'/icon_state_history.png',
+                    orderList3:resurl+'/icon_state_kanwei.png',
+                    orderList4:resurl+'/icon_state_return.png',
+                    rightArrow:resurl+'/right-arrow.png',
+            }
+        },
+        methods:{
+
+        },
+        ready(){
+            console.log('mmi',resurl)
+        }
+    }
+</script>
+<style>
+    ._font{
+        font-family:PingFangSC-Regular;
+    }
+    .top-content{
+        position:relative;
+    }
+
+    .avatar{
+        width:132;
+        height:132;
+        border-radius:50;
+        background-color:#fff;
+        justify-content:center;
+        align-items:center;
+    }
+    .order-list-item{
+        align-items:center;
+    }
+    .menu-content{
+        height:304;
+    }
+    .img-circle{
+        width:85;
+        height:85;
+        margin-bottom:10;
+    }
+
+    .menu-item{
+        background-color:#ffffff;
+        height:80px;
+        padding-left:30;
+        justify-content:center;
+    }
+
+    .img-rightArrow{
+        width:14;
+        height:26;
+        position:absolute;
+        right:30;
+        top:27;
+    }
+
+</style>

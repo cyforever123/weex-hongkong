@@ -1,0 +1,515 @@
+<template>
+    <div>
+        <div>
+            <div id="dialog" class="dialog" if="{{isShowDialog}}">
+                <div class="dialog-backdrop"></div>
+                    <div class="dialog-content">
+                    <div class="dialog-header">
+                        <image class="smallproimg" src={{dialogproimg}}></image>
+                        <text class="proviewname">Apple iPhone 7 128GB 玫瑰金色</text>
+                        <text class="proviewprice">HK$17,998.00</text>
+                        <text class="proviewcode">商品編碼：123129097</text>
+                        <div onclick="closeDialog" style="position: absolute;top: 10px;right: 10px;width: 80px;height: 80px;">
+                            <image class="closeimg" src={{proviewcloseimg}}></image>
+                        </div>
+                    </div>
+                    <div class="dialog-body">
+                        <list style="width: 750px;height: 500px">
+                            <cell>
+                                <text>{{dialogBody}}</text>
+                            </cell>
+                            <cell>
+                                <text>{{dialogBody}}</text>
+                            </cell>
+                            <cell>
+                                <text>{{dialogBody}}</text>
+                            </cell>
+                        </list>
+                    </div>
+                    <div class="dialog-footer">
+                        <text class="proviewconfirm">确认</text>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <list style="background-color: #f6f6f6;width:750px">
+
+            <cell>
+                <slider class="slider" interval="3000" auto-play="true">
+                    <div class="slider-pages" repeat="item in itemList">
+                        <image class="sliderimage" src="{{item.pictureUrl}}"></image>
+                    </div>
+                    <indicator class="sliderindicator"></indicator>
+                </slider>
+            </cell>
+
+            <cell style="width: 750px;height: 215px;background-color: white">
+                <text class="prointroduce">{{prointroduce}}</text>
+                <text class="promaidian">{{promaidian}}</text>
+                <div style="flex-direction: row">
+                    <text class="proprice">{{proprice}}</text>
+                    <text class="prorefprice">{{prorefprice}}</text>
+                </div>
+            </cell>
+
+            <cell>
+                <text style="width: 750px;height: 25px;background-color: #f6f6f6"></text>
+            </cell>
+
+            <cell onclick="changeselectedproinfo" style="flex-direction: row;width: 750px;height: 91px;background-color: white">
+                <text class="proselected">{{proselected}}</text>
+                <image onclick="reducecount" style="width: 50px;height: 50px;margin-top: 20px;margin-left: 452px" src={{proreduceimg}}></image>
+                <input
+                    class="procount"
+                    type="text"
+                    disabled={{proiscanbuy}}
+                    value={{proaccount}}
+                    oninput="oninput">
+                <image onclick="increasecount" style="width: 50px;height: 50px;margin-top: 20px;margin-left: 0px" src={{proincreaseimg}}></image>
+                <text class="proselectedinfo">{{proselectedinfo}}</text>
+            </cell>
+
+            <cell>
+                <text style="width: 750px;height: 25px;background-color: #f6f6f6"></text>
+            </cell>
+
+            <cell style="flex-direction: row;width: 750px;height: 91px;background-color: white">
+                <text class="proservice">{{proservice}}</text>
+                <text class="proserviceinfo">{{proserviceinfo}}</text>
+                <text class="propostrule">派送政策</text>
+            </cell>
+
+            <cell style="flex-direction: row;width: 750px;height: 91px;background-color: white">
+                <text class="propost">{{propost}}</text>
+                <text class="propostinfo">{{propostinfo}}</text>
+            </cell>
+
+            <cell style="flex-direction: row;width: 750px;height: 91px;background-color: white">
+                <text class="prospecial">{{prospecial}}</text>
+                <text class="prospecialinfo">{{prospecialinfo}}</text>
+                <text class="prospeservice">睇位服务</text>
+            </cell>
+
+            <cell style="justify-content:center;flex-direction: row;width:750px;height:72px">
+                <text style="margin-top:19px">繼續拖動查看商品詳情</text>
+            </cell>
+
+            <cell>
+                <web id="webview" src="{{weburl}}" class="webStyle"></web>
+            </cell>
+
+            <cell style="width: 750px;height: 110px"></cell>
+
+        </list>
+
+        <div if={{hideprobottom}}>
+            <div onclick="changecollectstaus" class="procollect">
+                <image class="procollectimg" src={{procollectimg}}></image>
+                <text style="margin-left: 41px;margin-top: 9px;font-size: 24px;color: #333333">收藏</text>
+            </div>
+            <div class="probottomview">
+                <div onclick="addtoshopcar" style="background-color: #f7d653;height: 110px;align-items: center;justify-content: center">
+                <text class="proaddtocar" >加入購物車</text>
+            </div>
+                <div onclick="productbuynow" style="background-color: #ff8000;height: 110px;align-items: center;justify-content: center">
+                    <text class="probuynow">立即購買</text>
+                </div>
+            </div>
+        </div>
+
+    <div>
+</template>
+
+<style>
+    .sliderimage {
+        width: 750px;
+        height: 750px;
+    }
+    .slider {
+        flex-direction: row;
+        margin: 0px;
+        width: 750px;
+        height: 750px;
+    }
+    .slider-pages {
+        flex-direction: row;
+        width: 750px;
+        height: 750px;
+    }
+    .sliderindicator {
+        width:750px;
+        height:1400px;
+        position:absolute;
+        top:1px;
+        left:1px;
+        item-color: white;
+        item-selectedColor: yellow;
+        item-size: 20;
+    }
+    .prointroduce {
+        width: 690px;
+        margin-top: 20px;
+        margin-left: 30px;
+        font-size: 34px;
+        color: #333333;
+    }
+    .promaidian {
+        width: 690px;
+        margin-top: 12px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #333333;
+    }
+    .proprice {
+        width: 345px;
+        margin-top: 30px;
+        margin-left: 30px;
+        font-size: 48px;
+        color: #ff8000;
+    }
+    .prorefprice {
+        width: 200px;
+        margin-top: 30px;
+        margin-left: 23px;
+        font-size: 24px;
+        color: #999999;
+        background-color: red;
+    }
+    .proselected {
+        width: 58px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #999999;
+    }
+    .proselectedinfo {
+        width: 500px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #333333;
+    }
+    .procount {
+        margin-left: 0px;
+        margin-top: 20px;
+        width: 81px;
+        height: 50px;
+        text-align: center;
+        background-color: red;
+    }
+    .proservice {
+        width: 58px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #999999;
+    }
+    .proserviceinfo {
+        width: 468px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #333333;
+    }
+    .propostrule {
+        width: 110px;
+        margin-left: 22px;
+        margin-top: 29px;
+        color: #ff8000;
+        font-size: 24px;
+    }
+    .propost {
+        width: 58px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #999999;
+    }
+    .propostinfo {
+        width: 500px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #333333;
+    }
+    .prospecial {
+        width: 58px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #999999;
+    }
+    .prospecialinfo {
+        width: 400px;
+        margin-top: 24px;
+        margin-left: 30px;
+        font-size: 28px;
+        color: #333333;
+    }
+    .prospeservice {
+        width: 110px;
+        margin-left: 90px;
+        margin-top: 29px;
+        color: #ff8000;
+        font-size: 24px;
+    }
+    .webStyle {
+        width: 750px;
+        height: 1000px;
+    }
+    .probottomview {
+        flex-direction: row;
+        width: 619px;
+        height: 110px;
+        position: fixed;
+        left: 131px;
+        right: 0;
+        bottom: 0;
+        background-color: #eeeeee;
+    }
+    .procollect {
+        flex-direction: column;
+        width: 131px;
+        height: 110px;
+        position: fixed;
+        left: 0px;
+        right: 0;
+        bottom: 0;
+        background-color: #eeeeee;
+    }
+    .procollectimg {
+        margin-left: 42px;
+        margin-top: 14px;
+        width: 48px;
+        height: 45px;
+    }
+    .proaddtocar {
+        width: 311px;
+        margin-left: 0px;
+        text-align: center;
+        color: white;
+    }
+    .probuynow {
+        width: 311px;
+        margin-left: 0px;
+        text-align: center;
+        color: white;
+    }
+    .dialog-backdrop {
+        opacity: .5;
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        background-color: #000000;
+    }
+    .dialog {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .dialog-content {
+        width: 750px;
+        height: 800px;
+        background-color: #ffffff;
+        position: relative;
+    }
+    .dialog-header {
+        padding: 80px;
+        position: relative;
+        border-bottom-width: 1px;
+        border-bottom-style: solid;
+        border-bottom-color: #efefef;
+    }
+    .dialog-footer {
+        height: 100px;
+        bottom: 0px;
+        position: relative;
+        background-color: #ff8000;
+    }
+    .dialog-body {
+        padding: 20px;
+        background-color: lightcoral;
+    }
+    .smallproimg {
+        position: absolute;
+        top: 20px;
+        left: 20px;
+        width: 120px;
+        height: 120px;
+    }
+    .proviewname {
+        position: absolute;
+        top: 20px;
+        left: 160px;
+        width: 500px;
+        font-size: 28px;
+    }
+    .proviewprice {
+        position: absolute;
+        top: 104px;
+        left: 160px;
+        width: 230px;
+        color: #f27900;
+        font-size: 28px;
+    }
+    .proviewcode {
+        position: absolute;
+        top: 104px;
+        left: 477px;
+        width: 250px;
+        color: #999999;
+        font-size: 24px;
+    }
+    .closeimg {
+        position: absolute;
+        left: 28.5px;
+        top: 28.5px;
+        width: 23px;
+        height: 23px;
+    }
+    .proviewconfirm {
+        width: 100px;
+        height: 40px;
+        left: 341px;
+        top: 31px;
+        font-size: 34px;
+        color: white;
+        text-align: center;
+    }
+
+</style>
+<script>
+    var webview = require('@weex-module/webview')
+    var baseUrl = require('./url.js');
+    var navigator = require('@weex-module/navigator')
+    var modal = require('@weex-module/modal');
+    module.exports = {
+        data: {
+            itemList: [
+                {itemId: '520421163634', pictureUrl: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
+                {itemId: '522076777462', pictureUrl: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
+                {itemId: '522076777462', pictureUrl: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'},
+                {itemId: '520421163634', pictureUrl: 'https://gd2.alicdn.com/bao/uploaded/i2/T14H1LFwBcXXXXXXXX_!!0-item_pic.jpg'},
+                {itemId: '522076777462', pictureUrl: 'https://gd1.alicdn.com/bao/uploaded/i1/TB1PXJCJFXXXXciXFXXXXXXXXXX_!!0-item_pic.jpg'},
+                {itemId: '522076777462', pictureUrl: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg'}
+            ],
+            proreduceimg: baseUrl.apiurl.resurl + 'subtracte_press.png',
+            proincreaseimg: baseUrl.apiurl.resurl + 'add_press.png',
+            prointroduce: 'Apple iPhone 7 128GB 玫瑰金色',
+            promaidian: '爆款限量瘋搶！現在下單，按訂單先後順序發貨。',
+            proprice: 'HK$17,998.00',
+            prorefprice: 'HK$18,800.00',
+            proselected: '已選',
+            proselectedinfo: '',
+            proservice: '服務',
+            proserviceinfo: '不支持退換貨/預計3-5天送達',
+            propost: '運費',
+            propostinfo: '免運費',
+            prospecial: '睇位',
+            prospecialinfo: '此產品購買之前需專人睇位',
+            weburl : 'http://www.suning.com',
+            detailshown: false,
+            loadingDisplay: 'hide',
+            refreshDisplay: 'hide',
+            proaccount: 1,
+            proiscanbuy: true,
+            procollectimg: baseUrl.apiurl.resurl + 'collect_normal.png',
+            collectstaus: false,
+            isShowDialog: false,
+            dialogproimg: 'https://gd3.alicdn.com/bao/uploaded/i3/TB1x6hYLXXXXXazXVXXXXXXXXXX_!!0-item_pic.jpg',
+            dialogBody: 'Weex is best!',
+            hideprobottom: true,
+            proviewcloseimg: baseUrl.apiurl.resurl + 'close.png',
+        },
+        methods:{
+              onloading:function() {
+                this.detailshown = true
+              },
+              refreshData: function () {
+                this.detailshown = false
+              },
+              reducecount: function() {
+                if (this.proaccount<2) {
+                    return
+                } else {
+                    this.proaccount --
+                }
+              },
+              increasecount: function() {
+                if (this.proaccount<99) {
+                    this.proaccount ++
+                } else {
+                    return
+                }
+              },
+              oninput: function(event) {
+                if (event.value < 2) {
+                    this.proreduceimg = baseUrl.apiurl.resurl + 'subtracte_grey.png'
+                } else {
+                    this.proreduceimg = baseUrl.apiurl.resurl + 'subtracte_press.png'
+                }
+              },
+              changecollectstaus: function() {
+                if (this.collectstaus) {
+                    this.collectstaus = false
+                    this.procollectimg = baseUrl.apiurl.resurl + 'collect_normal.png'
+                    var self = this;
+                    modal.alert({
+                        'message': '取消收藏',
+                        'okTitle': 'YES'
+                    }, function (result) {
+
+                    });
+                } else {
+                    this.collectstaus = true
+                    this.procollectimg = baseUrl.apiurl.resurl + 'collect_pressed.png'
+                    var self = this;
+                    modal.alert({
+                        'message': '收藏商品',
+                        'okTitle': 'YES'
+                    }, function (result) {
+
+                    });
+                }
+              },
+              addtoshopcar: function() {
+                var self = this;
+                modal.alert({
+                    'message': '加入购物车 商品数量' +' '+ this.proaccount,
+                    'okTitle': 'YES'
+                }, function (result) {
+                });
+              },
+              productbuynow: function() {
+                var self = this;
+                modal.alert({
+                    'message': '立即购买 商品数量' +' '+ this.proaccount,
+                    'okTitle': 'YES'
+                }, function (result) {
+                });
+              },
+              changeselectedproinfo: function() {
+                this.isShowDialog = true
+                this.hideprobottom = false
+              },
+              closeDialog: function (e) {
+                this.isShowDialog = false
+                this.hideprobottom = true
+              }
+        },
+        created: function () {
+            if (this.proiscanbuy) {
+                this.proincreaseimg = baseUrl.apiurl.resurl + 'add_press.png'
+            } else {
+                this.proincreaseimg = baseUrl.apiurl.resurl + 'add_grey.png'
+            }
+        }
+    }
+</script>

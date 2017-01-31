@@ -1,0 +1,443 @@
+<template>
+    <div>
+        <div class="header">
+            <div style="flex-direction: row;align-items: center;margin-top: 18;">
+                <div class="title-background" onclick="queryShops">
+                    <img style="width: 30;height: 30;" src={{query}}></img>
+                    <text class="title-query">搜索商品</text>
+                </div>
+                <div style=" height: 36;margin-left: 30">
+                    <img style="width: 36;height: 36;" src={{scan}} onclick="scanClick"></img>
+                </div>
+            </div>
+        </div>
+        <list onloadmore="onloadmore" loadmoreoffset="80">
+            <refresh onpullingdown="onpullingdown" onrefresh="onrefresh" display="{{refreshDisplay}}"
+                     style="width:750;flex-direction: row;justify-content: center;">
+                <loading-indicator style="height:80;width:80;color:#3192e1"></loading-indicator>
+            </refresh>
+            <cell id="item-0" onappear="hideTop">
+                <div>
+                    <slider class="slider" interval="3000" auto-play="true">
+                        <div class="slider-pages" repeat="item in sliderContent" onclick="sliderClick">
+                            <image class="img" src="{{item.pictureUrl}}"></image>
+                        </div>
+                        <indicator class="indicator"></indicator>
+                    </slider>
+                </div>
+            </cell>
+            <cell repeat={{iconList}} index="{{$index}}" style="flex-direction: row;">
+                <div repeat={{data}} style="flex:1;align-items:center;justify-content:center;margin-top: 37"
+                     onclick="sliderClick">
+                    <img style="width: 100;height: 100;" src={{icon}}></img>
+                    <text class="icon-name">{{name}}</text>
+                </div>
+            </cell>
+            <cell>
+                <div style="height: 26;background-color: #ececec;margin-top: 37">
+                </div>
+                <div style="height: 80;">
+                    <div class="wrapper">
+                        <div class="countdown">
+                            <img style="width:730;height: 80 " src={{countDownBackgroundUrl}}></img>
+                        </div>
+                        <div class="time">
+                            <img style="width:40;height: 30 " src={{timeUrl}}></img>
+                        </div>
+                        <div class="hour">
+                            <text class="time_text">{{hour_time}}</text>
+                        </div>
+                        <div class="hour-colon">
+                            <img style="width:4;height: 18 " src={{timeIconUrl}}></img>
+                        </div>
+                        <div class="minute_background">
+                            <img style="width:40;height: 30 " src={{timeUrl}}></img>
+                        </div>
+                        <div class="minute">
+                            <text class="time_text">{{minute_time}}</text>
+                        </div>
+                        <div class="minuter-colon">
+                            <img style="width:4;height: 18 " src={{timeIconUrl}}></img>
+                        </div>
+                        <div class="second_background">
+                            <img style="width:40;height: 30 " src={{timeUrl}}></img>
+                        </div>
+                        <div class="second">
+                            <text class="time_text">{{second_time}}</text>
+                        </div>
+                        <div class="arrow">
+                            <img style="width:27;height:30" src={{arrowUrl}}></img>
+                        </div>
+                    </div>
+                </div>
+                <scroller scroll-direction="horizontal" style="flex-direction: row;">
+                    <div repeat={{sliderhorizontal}} style="justify-content:center;margin-top:20;margin-left:30;"
+                         onclick="sliderClick">
+                        <img class="slider-horizontal" src={{pictureUrl}}></img>
+                        <text style="margin-top: 10;font-size:24px;font-family:PingFangSC-Light;color:#000000;">{{name}}
+                        </text>
+                        <text style="margin-top: 7;font-size:28px;font-family:PingFangSC-Semibold;color:#ff8000;">
+                            {{price}}
+                        </text>
+                        <text style="margin-top: 10;font-size:20px;font-family:PingFangSC-Light;color:#999999;text-decoration: line-through">
+                            {{oldPrice}}
+                        </text>
+                    </div>
+                </scroller>
+                <div style="height: 20;background-color: #ececec;margin-top: 26">
+                </div>
+            </cell>
+            <cell>
+                <div style="height: 80;background-color: #ffffff;justify-content:center; align-items: center;">
+                    <img style="width: 750;height: 80;" src={{list_title}}></img>
+                </div>
+                <div>
+                    <text style="background-color:#d8d8d8;height: 1 "></text>
+                </div>
+            </cell>
+            <cell repeat={{shops}} index="{{$index}}" style="flex-direction: row;" onclick="sliderClick">
+                <div repeat={{data}}
+                     style="justify-content:center;flex:1;border-bottom-width:1px;border-bottom-color: #d8d8d8;">
+                    <div style="flex-direction: row;">
+                        <div style="margin-bottom:32;flex:1">
+                            <div style="align-items: center;justify-content:center;margin-top: 25">
+                                <img class="shop-icon" src={{icon}}></img>
+                            </div>
+                            <text style="margin-top: 37;margin-left:20;font-size:24px;font-family:PingFangSC-Light;color:#000000;letter-spacing: 0;height: 64">
+                                {{name}}
+                            </text>
+                            <text style="margin-top: 4;margin-left:20;font-size:32px;font-family:PingFangSC-Semibold;color:#ff8000;">
+                                {{price}}
+                            </text>
+                        </div>
+                        <div>
+                            <text style="background-color:#d8d8d8;width: 1;height: 490px"></text>
+                        </div>
+                    </div>
+                </div>
+            </cell>
+        </list>
+        <div class="upTop" onclick="goTopClick" if={{isShowTop}}>
+            <img class="gotoTop" src={{gotoTopUrl}}></img>
+        </div>
+    </div>
+</template>
+
+<style>
+    .header {
+        height: 86;
+        align-items: center;
+        position: sticky;
+    }
+
+    .title-background {
+        align-items: center;
+        justify-content: center;
+        background-color: #ececec;
+        border-radius: 4px;
+        width: 614px;
+        height: 50px;
+        border-radius: 4px;
+        flex-direction: row;
+    }
+
+    .title-query {
+        font-size: 28;
+        font-family: PingFangSC-Light;
+        font-size: 28px;
+        color: #333333;
+        text-align: center;
+    }
+
+    .img {
+        width: 750;
+        height: 528;
+    }
+
+    .slider {
+        flex-direction: row;
+        width: 750;
+        height: 528;
+    }
+
+    .slider-pages {
+        flex-direction: row;
+        width: 750;
+        height: 528;
+    }
+
+    .indicator {
+        width: 750;
+        height: 528;
+        position: absolute;
+        top: 236;
+        left: 1;
+        item-color: white;
+        item-selectedColor: #ffa400;
+        item-size: 20;
+    }
+
+    .icon-name {
+        font-family: PingFangSC-Light;
+        font-size: 24px;
+        color: #333333;
+        text-align: center;
+        margin-top: 23;
+    }
+
+    .slider-horizontal {
+        background-color: #ececec;
+        border-radius: 4px;
+        width: 240px;
+        height: 240px;
+    }
+
+    .shop-icon {
+        width: 286px;
+        height: 286px;
+    }
+
+    .countdown {
+        align-items: center
+    }
+
+    .time {
+        position: absolute;;
+        top: 28;
+        left: 368;
+    }
+
+    .hour {
+        position: absolute;;
+        top: 28;
+        left: 375;
+        justify-content: center;
+    }
+
+    .time_text {
+        font-family: PingFangSC-Medium;
+        font-size: 22px;
+        color: #ffffff;
+        text-align: left;
+    }
+
+    .hour-colon {
+        position: absolute;;
+        top: 34;
+        left: 414;
+        justify-content: center;
+    }
+
+    .minute_background {
+        position: absolute;;
+        top: 28;
+        left: 426;
+        justify-content: center;
+    }
+
+    .minute {
+        position: absolute;;
+        top: 28;
+        left: 433;
+        justify-content: center;
+    }
+
+    .minuter-colon {
+        position: absolute;;
+        top: 34;
+        left: 474;
+        justify-content: center;
+    }
+
+    .second_background {
+        position: absolute;;
+        top: 28;
+        left: 486;
+        justify-content: center;
+    }
+
+    .second {
+        position: absolute;;
+        top: 28;
+        left: 493;
+        justify-content: center;
+    }
+
+    .arrow {
+        position: absolute;;
+        top: 28;
+        left: 526;
+        justify-content: center;
+    }
+
+    .wrapper {
+        position: absolute;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+    }
+
+    .gotoTop {
+        width: 80;
+        height: 80;
+    }
+
+    .upTop {
+        width: 80;
+        height: 80;
+        position: fixed;
+        right: 20;
+        bottom: 20;
+    }
+</style>
+
+<script>
+    var baseUrl = require('./url.js');
+    var dom = require('@weex-module/dom')
+    var navigator = require('@weex-module/navigator')
+    var nextUrl = baseUrl.apiurl.resurl + 'search_first.js'
+    var shopDetailUrl = baseUrl.apiurl.resurl + 'prodetail.js'
+    var weexZxing = require('@weex-module/weex_zxing')
+    module.exports = {
+        data: {
+            query: baseUrl.apiurl.resurl + "query.png",
+            scan: baseUrl.apiurl.resurl + "scan.png",
+            list_title: baseUrl.apiurl.resurl + "list_title.png",
+            countDownBackgroundUrl: baseUrl.apiurl.resurl + "time_background.png",
+            timeUrl: baseUrl.apiurl.resurl + "time.png",
+            timeIconUrl: baseUrl.apiurl.resurl + "time_icon.png",
+            arrowUrl: baseUrl.apiurl.resurl + "arrow.png",
+            gotoTopUrl: baseUrl.apiurl.resurl + "goto_top.png",
+            time: 0,
+            hour_time: 30,
+            minute_time: 40,
+            second_time: 60,
+            refreshDisplay: 'show',
+            isShowTop: false,
+            sliderContent: [
+                {itemId: '520421163634', title: 'item1', pictureUrl: baseUrl.apiurl.resurl + 'slider1.png'},
+                {itemId: '522076777462', title: 'item2', pictureUrl: baseUrl.apiurl.resurl + 'silder2.png'},
+                {itemId: '522076777462', title: 'iten3', pictureUrl: baseUrl.apiurl.resurl + 'slider1.png'},
+                {itemId: '522076777462', title: 'iten3', pictureUrl: baseUrl.apiurl.resurl + 'slider1.png'},
+                {itemId: '522076777462', title: 'iten3', pictureUrl: baseUrl.apiurl.resurl + 'slider1.png'}
+            ],
+            iconList: [{
+                data: [{name: "電視優惠", icon: baseUrl.apiurl.resurl + 'icon1.png'}, {
+                    name: "冷氣優惠",
+                    icon: baseUrl.apiurl.resurl + 'icon2.png'
+                }, {name: "相機優惠", icon: baseUrl.apiurl.resurl + 'icon3.png'}, {
+                    name: "手機優惠",
+                    icon: baseUrl.apiurl.resurl + 'icon4.png'
+                }]
+            },
+                {
+                    data: [{name: "Microsoft專區", icon: baseUrl.apiurl.resurl + 'icon5.png'}, {
+                        name: "Apple專區",
+                        icon: baseUrl.apiurl.resurl + 'icon6.png'
+                    }, {name: "促銷頻道", icon: baseUrl.apiurl.resurl + 'icon7.png'}, {
+                        name: "促銷頻道",
+                        icon: baseUrl.apiurl.resurl + 'icon8.png'
+                    }],
+                }],
+            sliderhorizontal: [
+                {
+                    name: '華碩 (ASUS) UX1',
+                    price: 'HK$2,999',
+                    oldPrice: 'HK$1,999',
+                    pictureUrl: baseUrl.apiurl.resurl + 'computer.png'
+                },
+                {
+                    name: '華碩 (ASUS) UX2',
+                    price: 'HK$2,999',
+                    oldPrice: 'HK$1,999',
+                    pictureUrl: baseUrl.apiurl.resurl + 'pad.png'
+                },
+                {
+                    name: '華碩 (ASUS) UX3',
+                    price: 'HK$2,999',
+                    oldPrice: 'HK$1,999',
+                    pictureUrl: baseUrl.apiurl.resurl + 'print.png'
+                },
+                {
+                    name: '華碩 (ASUS) UX4',
+                    price: 'HK$2,999',
+                    oldPrice: 'HK$1,999',
+                    pictureUrl: baseUrl.apiurl.resurl + 'computer.png'
+                },
+                {
+                    name: '華碩 (ASUS) UX5',
+                    price: 'HK$2,999',
+                    oldPrice: 'HK$1,999',
+                    pictureUrl: baseUrl.apiurl.resurl + 'pad.png'
+                }
+            ],
+            shops: [{
+                data: [{
+                    name: "Apple iPhone 7 128GB",
+                    icon: baseUrl.apiurl.resurl + 'nikon.png',
+                    price: "HK$3,998.00"
+                }, {
+                    name: "三星 Galaxy J3 Pro（J3110）2+16G 皓月銀",
+                    icon: baseUrl.apiurl.resurl + 'computer.png',
+                    price: "HK$19,999.00"
+                }]
+            },
+                {
+                    data: [{
+                        name: "Apple iPhone 7 128GB 玫瑰金色",
+                        icon: baseUrl.apiurl.resurl + 'headset.png',
+                        price: "HK$3,998.00"
+                    }, {name: "Apple iPhone 7 128GB", icon: baseUrl.apiurl.resurl + 'pad.png', price: "HK$3,998.00"}],
+                }]
+        },
+        created: function () {
+            this.refreshDisplay = 'show'
+        },
+        methods: {
+            queryShops: function (e) {
+                var params = {'url': nextUrl, 'animated': 'true'}
+                navigator.push(params, function (e) {
+                    console.log('i am the callback.')
+                });
+            },
+            scanClick: function (e) {
+                weexZxing.assistant();
+            },
+            sliderClick: function (e) {
+                var params = {'url': shopDetailUrl, 'animated': 'true'}
+                navigator.push(params, function (e) {
+                    console.log('i am the callback.')
+                });
+            },
+            onrefresh: function (e) {
+                this.refreshDisplay = 'show';
+                this.$call('modal', 'toast', {
+                    'message': '刷新成功 ',
+                    'duration': 2.0
+                });
+                this.refreshDisplay = 'hide'
+            },
+            onpullingdown: function (e) {
+            },
+            goTopClick: function () {
+                var el = this.$el('item-0')
+                dom.scrollToElement(el, {
+                    offset: 0
+                })
+            },
+            onloadmore: function (e) {
+                this.isShowTop = true;
+            },
+            hideTop: function (e) {
+                this.isShowTop = false;
+            }
+        },
+        ready: function () {
+            setInterval(function () {
+                this.second_time--;
+                this._app.updateActions();
+            }.bind(this), 1000);
+        },
+    }
+</script>

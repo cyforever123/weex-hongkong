@@ -1,0 +1,313 @@
+<template>
+    <div>
+        <div style="padding-left: 30;padding-right: 30;height: 80">
+                <div class="header">
+                    <div style=" height: 36;" onclick="popout">
+                         <img style="width: 17;height: 30;" src={{go_back}}></img>
+                    </div>
+                    <input class = "title-background"
+                            type="text"
+                            autofocus="true"
+                            oninput="oninput">
+                    </input>
+
+                   <div style=" height: 36;">
+                        <img style="width: 36;height: 36;" src={{select}}></img>
+                   </div>
+                </div>
+                <div class = "title-img" if="{{!isinput}}">
+                                 <img style="width: 30;height: 30;" src={{query}}></img>
+                                 <text class="title-query">搜索商品</text>
+                </div>
+        </div>
+        <div style="height: 1px;background-color: #999999;margin-top: 18px"></div>
+
+        <div class="tab">
+            <div style="flex: 1;justify-content: center;align-items: center">
+                <text class="title-query" style="color: #ff8000">
+                    綜合
+                </text>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        名稱
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up" style="color:#ff8000;">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        價格
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        型號
+                    </text>
+                    <div style="margin-left: 5px">
+                        <text class="up">▲
+                        </text>
+                        <text class="up">▼
+                        </text>
+                    </div>
+            </div>
+            <div style="width: 1;height: 40;background-color: #d8d8d8;margin-top: 20;"></div>
+            <div style="flex: 1;flex-direction:row;justify-content: center;align-items: center">
+                    <text class="title-query">
+                        品牌
+                    </text>
+                    <div style="margin-left: 5px" onclick="switchView">
+                        <img style="width: 22;height: 12;" src={{popdown}}></img>
+                    </div>
+            </div>
+
+
+        </div>
+        <div style="height: 1px;background-color: #999999"></div>
+        <div class="nothing" if="{{!anything}}" style="height: 500;flex: 1;background-color: #f5f5f5;justify-content: center;align-items: center" >
+             <img style="width: 140;height: 177;" src={{sorry}}></img>
+             <text class="title-query">抱歉，“手提電腦”分類下還沒有商品
+             </text>
+             <div style="background-color: #f5f5f5;
+                        border-color: #ff8000;
+                        border-width: 1;
+                         border:1px solid #ff8000;
+                         border-radius:4px;
+                         width:418px;
+                         height:78px;
+                         justify-content: center;
+                         align-items: center;
+                         margin-top: 30;">
+                    <text class="title-query"style="color: #ff8000">
+                                您可以搜索其他分類</text>
+             </div>
+
+        </div>
+        <list>
+            <cell repeat={{shops}} index="{{$index}}" if="{{anything}}" style="flex-direction: row;"onclick="todetail">
+                        <div repeat={{data}}
+                             style="justify-content:center;flex:1;">
+                            <div style="flex-direction: row;">
+                                <div style="margin-bottom:32;flex:1">
+                                    <div style="align-items: center;justify-content:center;margin-top: 25">
+                                        <img class="shop-icon" src={{icon}}></img>
+                                    </div>
+                                    <text style="margin-top: 37;margin-left:20;font-size:24px;font-family:PingFangSC-Light;color:#000000;letter-spacing: 0;height: 64">
+                                        {{name}}
+                                    </text>
+                                    <text style="margin-top: 4;margin-left:20;font-size:32px;font-family:PingFangSC-Semibold;color:#ff8000;">
+                                        {{price}}
+                                    </text>
+                                </div>
+
+                            </div>
+                        </div>
+                    </cell>
+        </list>
+    </div>
+</template>
+
+<style>
+     .header {
+                  height: 60;
+                  flex-direction: row;align-items: center;margin-top: 12;
+                 justify-content: space-between;
+         }
+         .title-background{
+           width:584px;
+           height:60px;
+           border-radius:4px;
+           background-color:#ececec;
+           margin-right: 10;
+           margin-left: 10;
+         }
+         .title-img{
+               align-items: center;
+               justify-content: center;
+               background-color:#ececec;
+               border-radius:4px;
+               width:200px;
+               height:58px;
+               flex-direction: row;
+               position: absolute;
+                   top: 13;
+                   left: 275;
+             }
+         .title-query{
+           font-family:PingFangSC-Light;
+           font-size:28px;
+           color:#333333;
+           text-align:left;
+         }
+        .tab{
+            background:#ffffff;
+            width:750px;
+            height:80px;
+            flex-direction: row;
+            justify-content: space-around;
+        }
+         .up{
+                    color:#cccccc;
+                    font-size:10px;
+                }
+        .shop-icon {
+                width: 286px;
+                height: 286px;
+            }
+</style>
+<script>
+     var baseUrl=require('./url.js');
+      var navigator = require('@weex-module/navigator');
+      var params = {
+                 animated: 'true'
+      };
+       var params1 = {
+                    url: baseUrl.apiurl.resurl +'prodetail.js',
+                    animated: 'true'
+       };
+        module.exports={
+            data:{
+                query:baseUrl.apiurl.resurl + "query.png",
+                scan:baseUrl.apiurl.resurl + "scan.png",
+                go_back:baseUrl.apiurl.resurl + "pic_back.png",
+                popdown:baseUrl.apiurl.resurl + "down.png",
+                select:baseUrl.apiurl.resurl + "filter_foucs.png",
+                picpath:baseUrl.apiurl.resurl + "default_pic.png",
+                sorry:baseUrl.apiurl.resurl + "loading_fail_default.png",
+                anything:true,
+                isinput:false,
+
+                    rows:[
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'},
+                      {name: '戴爾 (DELL) XPS 13-R5700 手提電腦',prise:'HK$11,699.00'}
+                    ],
+                     shops: [{
+                                    data: [{
+                                        name: "Apple iPhone 7 128GB",
+                                        icon: baseUrl.apiurl.resurl + 'nikon.png',
+                                        price: "HK$3,998.00"
+                                    }, {
+                                        name: "三星 Galaxy J3 Pro（J3110）2+16G 皓月銀",
+                                        icon: baseUrl.apiurl.resurl + 'computer.png',
+                                        price: "HK$19,999.00"
+                                    }]
+                                },
+                                    {
+                                        data: [{
+                                            name: "Apple iPhone 7 128GB 玫瑰金色",
+                                            icon: baseUrl.apiurl.resurl + 'headset.png',
+                                            price: "HK$3,998.00"
+                                        },
+                                        {name: "Apple iPhone 7 128GB",
+                                        icon: baseUrl.apiurl.resurl + 'pad.png',
+                                        price: "HK$3,998.00"}],
+                                    },
+                                    {
+                                                                        data: [{
+                                                                            name: "Apple iPhone 7 128GB",
+                                                                            icon: baseUrl.apiurl.resurl + 'nikon.png',
+                                                                            price: "HK$3,998.00"
+                                                                        }, {
+                                                                            name: "三星 Galaxy J3 Pro（J3110）2+16G 皓月銀",
+                                                                            icon: baseUrl.apiurl.resurl + 'computer.png',
+                                                                            price: "HK$19,999.00"
+                                                                        }]
+                                                                    },
+                                                                        {
+                                                                            data: [{
+                                                                                name: "Apple iPhone 7 128GB 玫瑰金色",
+                                                                                icon: baseUrl.apiurl.resurl + 'headset.png',
+                                                                                price: "HK$3,998.00"
+                                                                            },
+                                                                            {name: "Apple iPhone 7 128GB",
+                                                                            icon: baseUrl.apiurl.resurl + 'pad.png',
+                                                                            price: "HK$3,998.00"}],
+                                                                        }]
+            },
+             methods: {
+             oninput: function(event) {
+                  this.isinput=true;
+                                   },
+                     popout:function(event) {
+                      navigator.pop(params, function () {
+                          // callback
+                          })
+                      },
+                    todetail:function(e) {
+                        navigator.push(params1, function () {
+                                // callback
+                         } )
+                    },
+                 switchView: function() {
+                 this.toggleMaskVisible();
+                 this.opacity(this._ids.mask.el.ref);
+                 this.collapse(this._ids.options.el.ref);
+                 this.rotate(this._ids.arrow.el.ref);
+                },
+                toggleMaskVisible: function(){
+                                  this.current_showMask = !this.current_showMask;
+                                  var visibility = this.current_showMask? 'visible': 'hidden';
+                                  this._ids.mask.el.setClassStyle({visibility:visibility});
+                              },
+
+                              collapse: function(ref, callback) {
+                                  var platform = this.$getConfig().env.platform;
+                                  var translate = 'translate(0, 100%)'; // Web need % ;
+                                  if(platform == 'iOS') {
+                                      translate = 'translate(0, 270)'; // ios bug && fixing
+                                  }
+                                  this.current_translate = this.current_translate ? '' : translate;
+                                  this.anim(ref, {
+                                    transform: this.current_translate
+                                  }, 'ease', 100, callback);
+                              },
+
+                              opacity: function(ref, callback) {
+                                  var self = this;
+                                  self.current_opacity = self.current_opacity === 1 ? 0.1 : 1;
+                                  self.anim(ref, {
+                                      opacity: self.current_opacity
+                                  }, 'ease', 100, callback);
+                              },
+
+                              rotate: function(ref, callback) {
+                                  var self = this;
+                                  if(!self.current_rotate) {
+                                      self.current_rotate = 0;
+                                  }
+                                  self.current_rotate = self.current_rotate + 180;
+                                  self.anim(ref, {
+                                      transform: 'rotate(' + self.current_rotate + 'deg)'
+                                  }, 'linear', 100, callback);
+                              },
+
+             }
+        }
+</script>

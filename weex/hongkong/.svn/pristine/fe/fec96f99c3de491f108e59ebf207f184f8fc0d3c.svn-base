@@ -1,0 +1,94 @@
+{
+  "_args": [
+    [
+      "weex-components",
+      "E:\\workspace\\hongkong"
+    ]
+  ],
+  "_from": "weex-components@latest",
+  "_id": "weex-components@0.2.0",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/weex-components",
+  "_nodeVersion": "5.9.1",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/weex-components-0.2.0.tgz_1469004326378_0.3862996082752943"
+  },
+  "_npmUser": {
+    "email": "zhaojinjiang@me.com",
+    "name": "jinjiang"
+  },
+  "_npmVersion": "3.9.5",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "weex-components",
+    "raw": "weex-components",
+    "rawSpec": "",
+    "scope": null,
+    "spec": "latest",
+    "type": "tag"
+  },
+  "_requiredBy": [
+    "#USER"
+  ],
+  "_resolved": "https://registry.npmjs.org/weex-components/-/weex-components-0.2.0.tgz",
+  "_shasum": "73cb41f88e2e1ceed86d95d1f5db4b0a213cfd53",
+  "_shrinkwrap": null,
+  "_spec": "weex-components",
+  "_where": "E:\\workspace\\hongkong",
+  "bugs": {
+    "url": "https://github.com/weexteam/weex-components/issues"
+  },
+  "dependencies": {},
+  "description": "A group of simple and useful weex components",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "shasum": "73cb41f88e2e1ceed86d95d1f5db4b0a213cfd53",
+    "tarball": "https://registry.npmjs.org/weex-components/-/weex-components-0.2.0.tgz"
+  },
+  "gitHead": "6bb257e4725c7b72b3d939c9f063bd85b872351b",
+  "homepage": "https://github.com/weexteam/weex-components#readme",
+  "keywords": [
+    "weex",
+    "webcomponents",
+    "javascript",
+    "html5",
+    "android",
+    "ios"
+  ],
+  "license": "GPL-3.0",
+  "main": "./index.js",
+  "maintainers": [
+    {
+      "email": "ningli928@163.com",
+      "name": "boboning"
+    },
+    {
+      "email": "zhaojinjiang@me.com",
+      "name": "jinjiang"
+    },
+    {
+      "email": "luics.xu@gmail.com",
+      "name": "luics"
+    },
+    {
+      "email": "tekkahs@gmail.com",
+      "name": "mr.raindrop"
+    },
+    {
+      "email": "terrykingcha@gmail.com",
+      "name": "terrykingcha"
+    }
+  ],
+  "name": "weex-components",
+  "optionalDependencies": {},
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/weexteam/weex-components.git"
+  },
+  "scripts": {},
+  "version": "0.2.0"
+}

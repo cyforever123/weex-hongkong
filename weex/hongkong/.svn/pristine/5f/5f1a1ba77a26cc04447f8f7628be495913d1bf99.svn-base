@@ -1,0 +1,59 @@
+<template>
+    <div class="wrapper" style="justify">
+        <cell class="cell" repeat="item in lists" onclick="activeHandler($index)" style="align-items:center;">
+            <img src="{{$index!=activeIndex?item.normal:item.active}}" style="width:60;height:60;">
+            <text class="{{$index!=activeIndex? 'normal':'active'}}">{{item.txt}}</text>
+        </cell>
+    </div>
+</template>
+<script>
+    const url = require('./../url.js');
+    const navigator = require('@weex-module/navigator');
+    const resurl = require('./../url.js').apiurl.resurl;
+
+    export default {
+        data(){
+            return {
+                activeIndex:0,
+                normalColor:'color:#999;',
+                activeColor:'color:#ff8000;',
+                lists:[
+                    {normal:resurl+'/home_normal.png',active:resurl+'/home_selected.png',txt:'首頁'},
+                    {normal:resurl+'/category_normal.png',active:resurl+'/category_selected.png',txt:'分類'},
+                    {normal:resurl+'/shopcar_normal.png',active:resurl+'/shopcar_selected.png',txt:'購物車'},
+                    {normal:resurl+'/account_normal.png',active:resurl+'/account_selected.png',txt:'我的'},
+                ]
+            }
+        },
+        ready(){
+
+        },
+        methods:{
+            activeHandler:function(index){
+                this.activeIndex = index;
+            },
+        },
+    }
+</script>
+<style>
+    .wrapper{
+       flex-direction:row;
+       justify-content:space-between;
+       padding-left:72;
+       padding-right:72;
+       align-items:center;
+       position:fixed;
+       bottom:0;
+       left:0;
+       width:750px;
+       height:110px;
+       background-color:#fff;
+       border-top:1px solid #dedede;
+    }
+    .normal{
+        color:#999;
+    }
+    .active{
+        color:#ff8000;
+    }
+</style>

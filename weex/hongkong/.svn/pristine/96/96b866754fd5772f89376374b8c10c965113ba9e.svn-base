@@ -1,0 +1,16 @@
+<template>
+    <div style="flex: 1;align-items: center;flex-direction: column;justify-content: center;">
+        <img style="width:140;height:178;margin-bottom: 30" src={{noshopsUrl}}></img>
+        <text>暂无无商品</text>
+    </div>
+</template>
+
+<script>
+    var baseUrl = require('./url.js');
+    module.exports = {
+        data: {
+            noshopsUrl: baseUrl.apiurl.resurl + "loading_fail_default.png",
+        },
+        methods: {}
+    }
+</script>

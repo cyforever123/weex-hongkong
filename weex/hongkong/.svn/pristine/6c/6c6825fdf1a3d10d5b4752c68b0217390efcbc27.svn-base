@@ -1,0 +1,80 @@
+{
+  "_args": [
+    [
+      "weex-html5@^0.4.1",
+      "C:\\Users\\15120601\\AppData\\Roaming\\npm\\node_modules\\weex-toolkit"
+    ]
+  ],
+  "_cnpm_publish_time": 1476864272067,
+  "_from": "weex-html5@>=0.4.1 <0.5.0",
+  "_id": "weex-html5@0.4.1",
+  "_inCache": true,
+  "_installable": true,
+  "_location": "/weex-toolkit/weex-html5",
+  "_nodeVersion": "6.2.0",
+  "_npmOperationalInternal": {
+    "host": "packages-16-east.internal.npmjs.com",
+    "tmp": "tmp/weex-html5-0.4.1.tgz_1476864271456_0.8853377662599087"
+  },
+  "_npmUser": {
+    "email": "tekkahs@gmail.com",
+    "name": "mr.raindrop"
+  },
+  "_npmVersion": "3.8.9",
+  "_phantomChildren": {},
+  "_requested": {
+    "name": "weex-html5",
+    "raw": "weex-html5@^0.4.1",
+    "rawSpec": "^0.4.1",
+    "scope": null,
+    "spec": ">=0.4.1 <0.5.0",
+    "type": "range"
+  },
+  "_requiredBy": [
+    "/weex-toolkit"
+  ],
+  "_resolved": "https://registry.npm.taobao.org/weex-html5/download/weex-html5-0.4.1.tgz",
+  "_shasum": "85c8f820ae217ec9550c359ffe6e6757bf22db57",
+  "_shrinkwrap": null,
+  "_spec": "weex-html5@^0.4.1",
+  "_where": "C:\\Users\\15120601\\AppData\\Roaming\\npm\\node_modules\\weex-toolkit",
+  "author": {
+    "name": "mr.raindrop"
+  },
+  "bugs": {
+    "url": "https://github.com/alibaba/weex/issues"
+  },
+  "dependencies": {},
+  "description": "Weex HTML5 Renderer",
+  "devDependencies": {},
+  "directories": {},
+  "dist": {
+    "noattachment": false,
+    "shasum": "85c8f820ae217ec9550c359ffe6e6757bf22db57",
+    "size": 1024701,
+    "tarball": "http://registry.npm.taobao.org/weex-html5/download/weex-html5-0.4.1.tgz"
+  },
+  "homepage": "https://alibaba.github.io/weex",
+  "keywords": [
+    "html5",
+    "weex"
+  ],
+  "license": "Apache-2.0",
+  "main": "dist/weex.common.js",
+  "maintainers": [
+    {
+      "name": "mr.raindrop",
+      "email": "tekkahs@gmail.com"
+    }
+  ],
+  "name": "weex-html5",
+  "optionalDependencies": {},
+  "publish_time": 1476864272067,
+  "readme": "ERROR: No README data found!",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/alibaba/weex.git"
+  },
+  "scripts": {},
+  "version": "0.4.1"
+}
