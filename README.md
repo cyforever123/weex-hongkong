@@ -12,9 +12,9 @@
 
 [**四. Weex优雅的“降级”到 HTML5**](http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/52797939)
 
-[**五. weex项目实战篇（一） **](http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/54731173)
+[**五. weex项目实战篇（一）**](http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/54731173)
 
-[**六. weex项目实战篇（二） **](http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/54732559)
+[**六. weex项目实战篇（二）**](http://blog.csdn.net/dfskhgalshgkajghljgh/article/details/54732559)
 
 
 ----------
@@ -27,7 +27,7 @@
 1）新建一个名为hongkong的项目，如图所示：
 ![这里写图片描述](http://img.blog.csdn.net/20170125230554903?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
-2 ) 输入项目名称
+2 ）输入项目名称
 ![这里写图片描述](http://img.blog.csdn.net/20170125230625392?watermark/2/text/aHR0cDovL2Jsb2cuY3Nkbi5uZXQvZGZza2hnYWxzaGdrYWpnaGxqZ2g=/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70/gravity/SouthEast)
 
 3）点击【create】则项目则创建成功
